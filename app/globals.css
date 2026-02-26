@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+}
+
+@keyframes marquee-flow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
