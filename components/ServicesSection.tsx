@@ -1,70 +1,37 @@
 "use client";
 
+import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import Card from "./Card";
 import { motion } from "framer-motion";
 
 const services = [
   {
-    title: "システム開発",
+    number: "01",
+    title: "DX研修・ワークショップ",
+    subtitle: "組織変革プログラム",
+    lead: "DXを推進できる組織を構築します",
     description:
-      "Webアプリケーション、業務システムの設計・開発を一気通貫でサポート。スケーラブルで保守しやすいシステムを構築します。",
-    icon: (
-      <svg
-        className="w-12 h-12 text-indigo-600"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-        />
-      </svg>
-    ),
+      "実践型ワークショップを通じて、現場と経営が業務課題を構造的に理解し、自ら改善できる状態を構築します。",
+    href: "#",
   },
   {
-    title: "クラウド導入",
+    number: "02",
+    title: "業務分析・DX診断",
+    subtitle: "業務構造分析",
+    lead: "業務の構造を可視化し、本質的な課題を特定します",
     description:
-      "AWS、Azure、GCPを活用したクラウド設計・構築・運用。コスト最適化とセキュリティを両立したインフラを提供します。",
-    icon: (
-      <svg
-        className="w-12 h-12 text-indigo-600"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
-        />
-      </svg>
-    ),
+      "現場ヒアリングと業務分析により、業務・判断・情報の流れを整理し、DXの成功に必要な改善ポイントを明確にします。",
+    href: "#",
   },
   {
-    title: "DX支援",
+    number: "03",
+    title: "オリジナルDXツール開発",
+    subtitle: "専用システム開発",
+    lead: "貴社の業務に完全最適化されたDXツールを開発します",
     description:
-      "デジタル変革を推進。業務プロセスの分析から、最適なツール導入、人員育成まで、トータルでサポートします。",
-    icon: (
-      <svg
-        className="w-12 h-12 text-indigo-600"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M13 10V3L4 14h7v7l9-11h-7z"
-        />
-      </svg>
-    ),
+      "業務分析とワークショップで明らかになった課題をもとに、現場で実際に使われ、定着する専用DXツールを設計・開発します。",
+    href: "#",
   },
 ];
 
@@ -82,41 +49,53 @@ export default function ServicesSection() {
     <Section id="services" className="py-24 lg:py-40 bg-white">
       <Container>
         <motion.div
-          className="text-center mb-20"
+          className="mb-16 lg:mb-20"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-4">
-            Services
+          <p className="text-red-600 font-semibold text-sm uppercase tracking-wider mb-2">
+            Our Service
           </p>
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900">
             サービス
           </h2>
-          <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            お客様の課題に合わせた最適なソリューションを提供します。
-          </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {services.map((service, i) => (
             <motion.div
-              key={service.title}
+              key={service.number}
               custom={i}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true, margin: "-80px" }}
               variants={itemVariants}
             >
-              <Card className="p-10 lg:p-12 h-full flex flex-col">
-                <div className="mb-6">{service.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900">
+              <div className="h-full bg-white rounded-2xl border border-gray-200 p-8 lg:p-10 flex flex-col shadow-sm hover:shadow-md transition-shadow">
+                <span className="inline-block px-3 py-1 rounded-full bg-red-600 text-white text-sm font-bold mb-6 w-fit">
+                  {service.number}
+                </span>
+                <h3 className="text-xl lg:text-2xl font-bold text-gray-900">
                   {service.title}
                 </h3>
-                <p className="mt-4 text-gray-600 leading-relaxed flex-grow">
+                <p className="text-gray-500 text-sm mt-1">
+                  （{service.subtitle}）
+                </p>
+                <p className="mt-4 text-base font-semibold text-gray-800">
+                  {service.lead}
+                </p>
+                <p className="mt-4 text-gray-600 leading-relaxed flex-1">
                   {service.description}
                 </p>
-              </Card>
+                <Link
+                  href={service.href}
+                  className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded border-2 border-gray-800 text-gray-800 font-semibold hover:bg-gray-800 hover:text-white transition-colors w-fit"
+                >
+                  詳しく見る
+                  <span aria-hidden>›</span>
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>

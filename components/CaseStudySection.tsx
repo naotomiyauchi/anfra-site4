@@ -27,6 +27,15 @@ const caseStudies = [
   },
 ];
 
+const caseStudiesFlow = [
+  { industry: "物流", title: "倉庫管理システムの効率化", result: "作業時間 35% 短縮", image: "/749DD9DD-387C-40B5-B7A1-6488B6F2CC31.JPG" },
+  { industry: "医療", title: "電子カルテ連携システム", result: "診察時間 20% 削減", image: "/01F931B4-BC67-42C1-9780-BCB55BCDA230.JPG" },
+  { industry: "教育", title: "LMS基盤構築", result: "学習効率 45% 向上", image: "/D94CBA56-69B1-4E0A-9471-2BF595B4E1C4.JPG" },
+  { industry: "建設", title: "施工管理DX", result: "プロジェクト遅延 50% 削減", image: "/FCF0B3E7-8A30-4797-9730-08416339D4B1.JPG" },
+  { industry: "メディア", title: "コンテンツ管理基盤", result: "運用コスト 40% 削減", image: "/2BF304E7-6E69-4F67-9681-C707E346DA19.JPG" },
+  { industry: "不動産", title: "物件検索システム刷新", result: "問い合わせ 30% 増", image: "/590E57AC-AFF9-4942-B6CF-BF5902DDF269.JPG" },
+];
+
 export default function CaseStudySection() {
   return (
     <Section
@@ -114,6 +123,43 @@ export default function CaseStudySection() {
           ))}
         </div>
       </Container>
+
+      {/* 流れる事例（画面全幅・右から左へ・両端まで要素が埋まる） */}
+      <div className="relative z-10 mt-16 w-screen left-1/2 -translate-x-1/2 overflow-hidden">
+        <div
+          className="flex gap-6 w-max"
+          style={{ animation: "marquee-flow 50s linear infinite" }}
+        >
+            {[...caseStudiesFlow, ...caseStudiesFlow, ...caseStudiesFlow, ...caseStudiesFlow].map((item, i) => (
+              <Link
+                key={`${item.title}-${i}`}
+                href="#"
+                className="group flex-shrink-0 w-[280px] lg:w-[320px] block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-400"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={320}
+                    height={200}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/90 text-xs font-semibold text-gray-800 backdrop-blur-sm">
+                    {item.industry}
+                  </span>
+                </div>
+                <div className="p-5 lg:p-6">
+                  <h3 className="text-base font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold text-red-600">
+                    {item.result}
+                  </p>
+                </div>
+              </Link>
+            ))}
+        </div>
+      </div>
     </Section>
   );
 }

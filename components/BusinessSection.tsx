@@ -9,21 +9,24 @@ import { motion } from "framer-motion";
 const businessItems = [
   {
     number: "01",
-    title: "SES事業",
-    subtitle: "システムエンジニアリングサービス",
-    description: "お客様のご要望にマッチしたエキスパートをご提案します",
+    title: "DX研修・ワークショップ",
+    subtitle: "組織変革プログラム",
+    lead: "DXを推進できる組織を構築します",
+    description: "実践型ワークショップを通じて、現場と経営が業務課題を構造的に理解し、自ら改善できる状態を構築します。",
   },
   {
     number: "02",
-    title: "SES特化型SaaS「Fairgrit」",
-    subtitle: "SES業務支援ツール",
-    description: "SES業務を劇的に効率化させる業務支援ツール",
+    title: "業務分析・DX診断",
+    subtitle: "業務構造分析",
+    lead: "業務の構造を可視化し、本質的な課題を特定します",
+    description: "現場ヒアリングと業務分析により、業務・判断・情報の流れを整理し、DXの成功に必要な改善ポイントを明確にします。",
   },
   {
     number: "03",
-    title: "SESコンサルティング",
-    subtitle: "経営支援",
-    description: "制度設計や組織づくりなど、SESビジネスの立ち上げ・改善をトータルで支援します",
+    title: "オリジナルDXツール開発",
+    subtitle: "専用システム開発",
+    lead: "貴社の業務に完全最適化されたDXツールを開発します",
+    description: "業務分析とワークショップで明らかになった課題をもとに、現場で実際に使われ、定着する専用DXツールを設計・開発します。",
   },
 ];
 
@@ -52,11 +55,11 @@ export default function BusinessSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-gray-400 text-sm mb-2">{`{事業内容}`}</p>
+              <p className="text-gray-400 text-sm mb-2">{`{サービス}`}</p>
               <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
                 Our
                 <br />
-                Business
+                Service
               </h2>
             </motion.div>
 
@@ -78,7 +81,10 @@ export default function BusinessSection() {
                   <p className="text-gray-500 text-sm mt-0.5">
                     （{item.subtitle}）
                   </p>
-                  <p className="text-gray-700 mt-3 leading-relaxed">
+                  <p className="text-gray-800 font-semibold mt-3">
+                    {item.lead}
+                  </p>
+                  <p className="text-gray-600 mt-2 leading-relaxed">
                     {item.description}
                   </p>
                   <Link
@@ -103,7 +109,7 @@ export default function BusinessSection() {
           >
             <Image
               src="/749DD9DD-387C-40B5-B7A1-6488B6F2CC31.JPG"
-              alt="SES事業 - チームでの協業"
+              alt="DX研修・ワークショップ"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

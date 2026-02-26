@@ -13,19 +13,19 @@ type NavItem = {
 };
 
 const navLinks: NavItem[] = [
-  { href: "#top", label: "トップ" },
-  { href: "#about", label: "企業情報" },
+  { href: "/", label: "トップ" },
+  { href: "/about", label: "企業情報" },
   {
-    href: "#business",
+    href: "/business",
     label: "事業内容",
     dropdown: [
-      { label: "SES事業", href: "#business" },
-      { label: "SES特化型SaaS Fairgrit", href: "#business", external: true },
-      { label: "SESコンサルティング", href: "#business", external: true },
+      { label: "SES事業", href: "/business" },
+      { label: "SES特化型SaaS Fairgrit", href: "/business", external: true },
+      { label: "SESコンサルティング", href: "/business", external: true },
     ],
   },
-  { href: "#news", label: "お知らせ" },
-  { href: "#contact", label: "お問い合わせ" },
+  { href: "/news", label: "お知らせ" },
+  { href: "/contact", label: "お問い合わせ" },
 ];
 
 export default function Header() {
@@ -90,7 +90,7 @@ export default function Header() {
         <Container className="relative z-10">
         <div className="flex items-center justify-between h-16 xl:h-20">
           {/* ロゴ */}
-          <Link href="#top" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
               alt="Agent Grow"
@@ -153,7 +153,7 @@ export default function Header() {
           {/* デスクトップCTA + ハンバーガー */}
           <div className="hidden xl:flex items-center gap-3">
             <Link
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
             >
               カジュアル面談をする
@@ -203,7 +203,7 @@ export default function Header() {
               ))}
               <li>
                 <Link
-                  href="#contact"
+                  href="/contact"
                   className="block mx-4 mt-2 py-2.5 text-center rounded-lg bg-red-600 text-white font-semibold"
                   onClick={() => setIsMenuOpen(false)}
                 >
