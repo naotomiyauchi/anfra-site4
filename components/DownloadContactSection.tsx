@@ -30,9 +30,8 @@ export default function DownloadContactSection() {
           </Link>
         </motion.div>
 
-        {/* 右：赤 - お問い合わせ */}
+        {/* 右：赤 - お問い合わせ（/contact への導線） */}
         <motion.div
-          id="contact"
           className="flex flex-col justify-center px-8 py-16 lg:py-24 lg:px-16 bg-red-600"
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -45,7 +44,7 @@ export default function DownloadContactSection() {
           </h2>
           <div className="mt-2 w-12 h-0.5 bg-white" />
           <Link
-            href="#contact"
+            href="/contact#contact"
             className="mt-8 inline-flex items-center gap-2 w-fit px-6 py-3 rounded border-2 border-white text-white font-semibold hover:bg-white hover:text-red-600 transition-colors"
           >
             お問い合わせする

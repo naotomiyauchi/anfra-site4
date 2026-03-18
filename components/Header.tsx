@@ -14,18 +14,26 @@ type NavItem = {
 
 const navLinks: NavItem[] = [
   { href: "/", label: "トップ" },
-  { href: "/about", label: "企業情報" },
+  {
+    href: "/about",
+    label: "企業情報",
+    dropdown: [
+      { label: "代表メッセージ", href: "/about/message" },
+      { label: "ミッション・ビジョン・バリュー", href: "/about/mission" },
+      { label: "会社概要", href: "/about/company" },
+      { label: "沿革", href: "/about/history" },
+    ],
+  },
   {
     href: "/business",
     label: "事業内容",
     dropdown: [
-      { label: "SES事業", href: "/business" },
-      { label: "SES特化型SaaS Fairgrit", href: "/business", external: true },
-      { label: "SESコンサルティング", href: "/business", external: true },
+      { label: "DX研修・ワークショップ", href: "/business" },
+      { label: "業務分析・DX診断", href: "/business" },
+      { label: "オリジナルDXツール開発", href: "/business" },
     ],
   },
   { href: "/news", label: "お知らせ" },
-  { href: "/contact", label: "お問い合わせ" },
 ];
 
 export default function Header() {
@@ -102,7 +110,7 @@ export default function Header() {
           </Link>
 
           {/* デスクトップナビ */}
-          <nav className="hidden xl:flex items-center gap-0 ml-80">
+          <nav className="hidden lg:flex items-center gap-0 ml-[28rem]">
             {navLinks.map((link, i) => (
               <span key={link.label} className="relative flex items-center group/nav">
                 <Link
@@ -112,7 +120,7 @@ export default function Header() {
                   {link.label}
                 </Link>
                 {link.dropdown && (
-                  <div className="absolute top-full left-0 pt-3 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-200 z-50">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible transition-all duration-200 z-50">
                     <div className="bg-white rounded-b-lg shadow-lg border border-t-0 border-gray-200 py-3 px-4">
                       <p className="mb-3 text-xs font-bold text-gray-500 uppercase tracking-wider">
                         {link.label}
@@ -121,16 +129,14 @@ export default function Header() {
                         {link.dropdown.map((item, idx) => (
                           <span key={item.label} className="flex items-center">
                             {idx > 0 && (
-                              <>
-                                <span className="mx-3 text-red-600 font-semibold">›</span>
-                                <span className="w-px h-4 bg-gray-300 mr-3" aria-hidden />
-                              </>
+                              <span className="w-px h-4 bg-gray-300 mx-4" aria-hidden />
                             )}
                             <Link
                               href={item.href}
                               className="flex items-center gap-1.5 py-1 text-sm text-gray-800 hover:text-red-600 transition-colors whitespace-nowrap"
                             >
                               <span>{item.label.replace("Fairgrit", "[Fairgrit]")}</span>
+                              <span className="ml-1 text-red-600 font-semibold">›</span>
                               {item.external && (
                                 <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -151,19 +157,19 @@ export default function Header() {
           </nav>
 
           {/* デスクトップCTA + ハンバーガー */}
-          <div className="hidden xl:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/contact"
               className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors"
             >
-              カジュアル面談をする
+              お問い合わせ
             </Link>
           </div>
 
           {/* ハンバーガー（タブレット・狭いデスクトップ） */}
           <button
             type="button"
-            className="flex xl:hidden items-center justify-center w-10 h-10 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors"
+            className="flex lg:hidden items-center justify-center w-10 h-10 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="メニュー"
           >
@@ -186,7 +192,7 @@ export default function Header() {
         {/* ハンバーガーメニュー */}
         {isMenuOpen && (
           <nav
-            className="xl:hidden py-4 border-t border-gray-400"
+            className="lg:hidden py-4 border-t border-gray-400"
             aria-label="モバイルナビゲーション"
           >
             <ul className="space-y-1">
@@ -207,7 +213,7 @@ export default function Header() {
                   className="block mx-4 mt-2 py-2.5 text-center rounded-lg bg-red-600 text-white font-semibold"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  カジュアル面談をする
+                  お問い合わせ
                 </Link>
               </li>
             </ul>

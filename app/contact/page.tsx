@@ -1,10 +1,10 @@
 import Header from "@/components/Header";
-import DownloadContactSection from "@/components/DownloadContactSection";
 import Footer from "@/components/Footer";
+import ContactPageContent from "@/components/ContactPageContent";
 
 export const metadata = {
   title: "お問い合わせ | Corporate Site",
-  description: "お問い合わせ、資料ダウンロードはこちらから。",
+  description: "お問い合わせはこちらから。",
 };
 
 export default function ContactPage() {
@@ -12,7 +12,7 @@ export default function ContactPage() {
     <>
       <Header />
       <main className="pt-16 xl:pt-20">
-        <DownloadContactSection />
+        <ContactPageContent />
       </main>
       <Footer />
     </>

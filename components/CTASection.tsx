@@ -24,7 +24,7 @@ export default function CTASection() {
             まずはお話からお聞かせください。
           </p>
           <Link
-            href="#contact"
+            href="/contact#contact"
             className="inline-flex items-center justify-center mt-10 px-10 py-4 rounded-full text-lg font-semibold bg-white text-indigo-600 hover:bg-indigo-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
             お問い合わせ

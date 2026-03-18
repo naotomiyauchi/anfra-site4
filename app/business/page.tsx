@@ -1,10 +1,11 @@
 import Header from "@/components/Header";
-import BusinessSection from "@/components/BusinessSection";
 import Footer from "@/components/Footer";
+import BusinessPageContent from "@/components/BusinessPageContent";
 
 export const metadata = {
   title: "事業内容 | Corporate Site",
-  description: "SES事業、Fairgrit、SESコンサルティングなど、私たちの事業をご紹介します。",
+  description:
+    "DX研修・ワークショップ、業務分析・DX診断、オリジナルDXツール開発など、Anfraの事業内容をご紹介します。",
 };
 
 export default function BusinessPage() {
@@ -12,7 +13,7 @@ export default function BusinessPage() {
     <>
       <Header />
       <main className="pt-16 xl:pt-20">
-        <BusinessSection />
+        <BusinessPageContent />
       </main>
       <Footer />
     </>
