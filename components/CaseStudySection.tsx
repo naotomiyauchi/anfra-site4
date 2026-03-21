@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
 const caseStudies = [
   {
@@ -49,14 +51,23 @@ export default function CaseStudySection() {
           className="object-cover"
           sizes="100vw"
         />
+        {/* 黒いモヤオーバーレイ */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "rgba(0, 0, 0, 0.5)" }}
+          style={{
+            background: "rgba(0, 0, 0, 0.5)",
+          }}
         />
       </div>
 
       <Container className="relative z-10">
-        <FadeIn className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 -mt-12">
+        <motion.div
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16 -mt-12"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <div>
             <p className="text-red-400 font-semibold text-sm uppercase tracking-widest mb-2">
               Case Study
@@ -72,11 +83,17 @@ export default function CaseStudySection() {
             事例一覧を見る
             <span aria-hidden>›</span>
           </Link>
-        </FadeIn>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {caseStudies.map((item, i) => (
-            <FadeIn key={item.title} as="article" delay={i * 100}>
+            <motion.article
+              key={item.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
               <Link
                 href="#"
                 className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-400"
@@ -102,7 +119,7 @@ export default function CaseStudySection() {
                   </p>
                 </div>
               </Link>
-            </FadeIn>
+            </motion.article>
           ))}
         </div>
       </Container>
@@ -113,34 +130,34 @@ export default function CaseStudySection() {
           className="flex gap-6 w-max"
           style={{ animation: "marquee-flow 50s linear infinite" }}
         >
-          {[...caseStudiesFlow, ...caseStudiesFlow, ...caseStudiesFlow, ...caseStudiesFlow].map((item, i) => (
-            <Link
-              key={`${item.title}-${i}`}
-              href="#"
-              className="group flex-shrink-0 w-[280px] lg:w-[320px] block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-400"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={320}
-                  height={200}
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                />
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/90 text-xs font-semibold text-gray-800 backdrop-blur-sm">
-                  {item.industry}
-                </span>
-              </div>
-              <div className="p-5 lg:p-6">
-                <h3 className="text-base font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm font-semibold text-red-600">
-                  {item.result}
-                </p>
-              </div>
-            </Link>
-          ))}
+            {[...caseStudiesFlow, ...caseStudiesFlow, ...caseStudiesFlow, ...caseStudiesFlow].map((item, i) => (
+              <Link
+                key={`${item.title}-${i}`}
+                href="#"
+                className="group flex-shrink-0 w-[280px] lg:w-[320px] block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-400"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={320}
+                    height={200}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-white/90 text-xs font-semibold text-gray-800 backdrop-blur-sm">
+                    {item.industry}
+                  </span>
+                </div>
+                <div className="p-5 lg:p-6">
+                  <h3 className="text-base font-bold text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm font-semibold text-red-600">
+                    {item.result}
+                  </p>
+                </div>
+              </Link>
+            ))}
         </div>
       </div>
     </Section>

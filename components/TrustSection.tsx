@@ -1,7 +1,9 @@
+"use client";
+
 import Section from "./Section";
 import Container from "./Container";
 import Card from "./Card";
-import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
 const stats = [
   {
@@ -26,21 +28,43 @@ const stats = [
   },
 ];
 
+const itemVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.5 },
+  }),
+};
+
 export default function TrustSection() {
   return (
     <Section id="trust" className="py-24 lg:py-32 bg-gray-50">
       <Container>
-        <FadeIn className="text-center mb-16">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
             数字で見る信頼
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             私たちの実績とお客様との信頼関係をご紹介します。
           </p>
-        </FadeIn>
+        </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, i) => (
-            <FadeIn key={stat.label} delay={i * 100}>
+            <motion.div
+              key={stat.label}
+              custom={i}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={itemVariants}
+            >
               <Card className="p-8 lg:p-10 text-center">
                 <p className="text-4xl lg:text-5xl font-bold text-indigo-600">
                   {stat.value}
@@ -50,7 +74,7 @@ export default function TrustSection() {
                 </p>
                 <p className="mt-2 text-sm text-gray-600">{stat.description}</p>
               </Card>
-            </FadeIn>
+            </motion.div>
           ))}
         </div>
       </Container>

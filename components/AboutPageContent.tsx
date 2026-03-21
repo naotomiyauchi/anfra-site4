@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
 const aboutItems = [
   { id: "message", title: "代表メッセージ", image: "/749DD9DD-387C-40B5-B7A1-6488B6F2CC31.JPG", href: "/about/message" },
@@ -31,16 +33,28 @@ export default function AboutPageContent() {
       </div>
 
       <Container className="relative z-10">
-        <FadeIn className="mb-16 lg:mb-20">
+        <motion.div
+          className="mb-16 lg:mb-20"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <p className="text-gray-400 text-sm mb-2">{`企業情報`}</p>
           <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900">
             Company
           </h1>
-        </FadeIn>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
           {aboutItems.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 100}>
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
               <Link
                 href={item.href}
                 className="group block w-full text-left bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200"
@@ -68,7 +82,7 @@ export default function AboutPageContent() {
                   </span>
                 </div>
               </Link>
-            </FadeIn>
+            </motion.div>
           ))}
         </div>
       </Container>

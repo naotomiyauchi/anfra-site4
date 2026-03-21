@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react";
 import Section from "./Section";
 import Container from "./Container";
-import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
 export default function ContactPageContent() {
   const [submitted, setSubmitted] = useState(false);
@@ -42,9 +42,18 @@ export default function ContactPageContent() {
   };
 
   return (
-    <Section id="contact" className="py-20 lg:py-28 bg-white">
+    <Section
+      id="contact"
+      className="py-20 lg:py-28 bg-white"
+    >
       <Container>
-        <FadeIn className="grid gap-12 lg:grid-cols-2 items-start">
+        <motion.div
+          className="grid gap-12 lg:grid-cols-2 items-start"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           {/* 左カラム：テキスト */}
           <div>
             <p className="text-sm font-medium text-red-600 mb-2">{`〈お問い合わせ〉`}</p>
@@ -103,7 +112,13 @@ export default function ContactPageContent() {
           </div>
 
           {/* 右カラム：フォーム */}
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm px-5 py-6 lg:px-7 lg:py-7">
+          <motion.div
+            className="bg-white rounded-2xl border border-slate-200 shadow-sm px-5 py-6 lg:px-7 lg:py-7"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+          >
             <h2 className="text-base lg:text-lg font-semibold text-slate-900 mb-2.5">
               お問い合わせフォーム
             </h2>
@@ -199,9 +214,10 @@ export default function ContactPageContent() {
                 </p>
               )}
             </form>
-          </div>
-        </FadeIn>
+          </motion.div>
+        </motion.div>
       </Container>
     </Section>
   );
 }
+

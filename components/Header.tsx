@@ -25,12 +25,12 @@ const navLinks: NavItem[] = [
     ],
   },
   {
-    href: "/business",
+    href: "/#business",
     label: "事業内容",
     dropdown: [
-      { label: "DX研修・ワークショップ", href: "/business" },
-      { label: "業務分析・DX診断", href: "/business" },
-      { label: "オリジナルDXツール開発", href: "/business" },
+      { label: "DX研修・ワークショップ", href: "/#business" },
+      { label: "業務分析・DX診断", href: "/#business" },
+      { label: "オリジナルDXツール開発", href: "/#business" },
     ],
   },
   { href: "/news", label: "お知らせ" },

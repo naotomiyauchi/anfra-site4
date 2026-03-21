@@ -1,7 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import FadeIn from "./FadeIn";
+import { motion } from "framer-motion";
 
 const phaseCards = [
   {
@@ -56,7 +58,7 @@ export default function AboutSection() {
         />
       </div>
 
-      {/* 右上：About Us のゴースト文字 */}
+      {/* 右上：About Us のゴースト文字（狭い画面では上余白を抑える） */}
       <div
         className="absolute top-4 right-12 lg:top-16 lg:right-20 pointer-events-none select-none z-10"
         aria-hidden
@@ -70,13 +72,20 @@ export default function AboutSection() {
       </div>
 
       <Container className="relative z-10">
+        {/* 上部：2カラム（テキスト + アウトライン文字） */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <FadeIn className="order-2 lg:order-1" direction="left">
+          <motion.div
+            className="order-2 lg:order-1"
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
             <p className="text-gray-400 text-sm uppercase tracking-widest mb-4">
               About
             </p>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-              <span className="whitespace-nowrap">"自走できる組織"を育てる</span>
+              <span className="whitespace-nowrap">“自走できる組織”を育てる</span>
               <br />
               DX変革支援企業
               <br />
@@ -113,25 +122,45 @@ export default function AboutSection() {
                 <span className="text-white/90" aria-hidden>›››</span>
               </span>
             </Link>
-          </FadeIn>
+          </motion.div>
 
-          <div className="hidden lg:flex order-1 lg:order-2 relative items-center justify-end" />
+          <motion.div
+            className="hidden lg:flex order-1 lg:order-2 relative items-center justify-end"
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+          </motion.div>
+
         </div>
 
         {/* 下部：Phase 01 / 02 / 03 */}
         <div className="mt-24 lg:mt-32">
-          <FadeIn className="mb-12 lg:mb-16">
+          <motion.div
+            className="mb-12 lg:mb-16"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-gray-400 text-sm uppercase tracking-widest mb-2">
               Our Approach
             </p>
             <h3 className="text-3xl lg:text-5xl font-bold text-white">
               DX推進を成功に導く ３フェーズ
             </h3>
-          </FadeIn>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {phaseCards.map((card, i) => (
-              <FadeIn key={card.phase} delay={i * 100}>
+              <motion.div
+                key={card.phase}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
                 <div className="h-full bg-white rounded-xl shadow-lg p-6 lg:p-8 flex flex-col">
                   <span className="inline-block px-3 py-1 rounded-full bg-red-600 text-white text-sm font-bold mb-5">
                     Phase {card.phase}
@@ -158,7 +187,7 @@ export default function AboutSection() {
                     </p>
                   </div>
                 </div>
-              </FadeIn>
+              </motion.div>
             ))}
           </div>
         </div>
