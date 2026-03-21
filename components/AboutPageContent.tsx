@@ -8,7 +8,6 @@ const aboutItems = [
   { id: "message", title: "代表メッセージ", image: "/749DD9DD-387C-40B5-B7A1-6488B6F2CC31.JPG", href: "/about/message" },
   { id: "mission", title: "ミッション・ビジョン・バリュー", image: "/1B71609F-C570-494E-8F77-6BC4D7035398.JPG", href: "/about/mission" },
   { id: "company", title: "会社概要", image: "/2BF304E7-6E69-4F67-9681-C707E346DA19.JPG", href: "/about/company" },
-  { id: "history", title: "沿革", image: "/D94CBA56-69B1-4E0A-9471-2BF595B4E1C4.JPG", href: "/about/history" },
 ];
 
 export default function AboutPageContent() {

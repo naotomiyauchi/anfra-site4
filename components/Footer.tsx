@@ -90,67 +90,84 @@ export default function Footer() {
 
       {/* ナビゲーション */}
       <Container>
-        <div className="py-12 lg:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-          <div>
-            <Link href="#top" className="font-bold text-gray-900 hover:text-red-600 transition-colors flex items-center gap-1">
-              TOP
-              <span>›</span>
+        <div className="py-12 lg:py-16 grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+          {/* TOP */}
+          <div className="col-span-2 lg:col-span-1">
+            <Link href="/" className="font-bold text-gray-900 hover:text-red-600 transition-colors flex items-center gap-1">
+              TOP <span>›</span>
             </Link>
           </div>
 
+          {/* 企業情報 */}
           <nav>
-            <p className="font-bold text-gray-900 mb-3 flex items-center gap-1">
-              企業情報
-              <span>›</span>
-            </p>
+            <Link href="/about" className="font-bold text-gray-900 hover:text-red-600 transition-colors mb-3 flex items-center gap-1">
+              企業情報 <span>›</span>
+            </Link>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li><Link href="#about" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>代表メッセージ</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>ミッション・ビジョン・バリュー</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>役員紹介</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>沿革</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>健康経営宣言</Link></li>
+              <li>
+                <Link href="/about/message" className="hover:text-red-600 flex items-center gap-1">
+                  <span className="text-red-600">・</span>代表メッセージ
+                </Link>
+              </li>
+              <li>
+                <Link href="/about/mission" className="hover:text-red-600 flex items-center gap-1">
+                  <span className="text-red-600">・</span>ミッション・ビジョン・バリュー
+                </Link>
+              </li>
+              <li>
+                <Link href="/about/company" className="hover:text-red-600 flex items-center gap-1">
+                  <span className="text-red-600">・</span>会社概要
+                </Link>
+              </li>
             </ul>
           </nav>
 
+          {/* 事業内容 */}
           <nav>
-            <p className="font-bold text-gray-900 mb-3 flex items-center gap-1">事業内容</p>
+            <Link href="/business" className="font-bold text-gray-900 hover:text-red-600 transition-colors mb-3 flex items-center gap-1">
+              事業内容 <span>›</span>
+            </Link>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li><Link href="#business" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>SES事業</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>SES特化型SaaS Fairgrit</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>SESコンサルティング</Link></li>
+              <li>
+                <Link href="/business" className="hover:text-red-600 flex items-center gap-1">
+                  <span className="text-red-600">・</span>DX研修・ワークショップ
+                </Link>
+              </li>
+              <li>
+                <Link href="/business" className="hover:text-red-600 flex items-center gap-1">
+                  <span className="text-red-600">・</span>業務分析・DX診断
+                </Link>
+              </li>
+              <li>
+                <Link href="/business" className="hover:text-red-600 flex items-center gap-1">
+                  <span className="text-red-600">・</span>オリジナルDXツール開発
+                </Link>
+              </li>
             </ul>
           </nav>
 
-          <nav>
-            <p className="font-bold text-gray-900 mb-3 flex items-center gap-1">
-              採用情報
-              <span>›</span>
-            </p>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>選ばれる理由</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>採用メッセージ</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>単価評価制度</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1"><span className="text-red-600">・</span>案件選択制度</Link></li>
-            </ul>
-            <p className="font-bold text-gray-900 mt-4 mb-3 flex items-center gap-1">
-              お知らせ
-              <span>›</span>
-            </p>
-            <p className="font-bold text-gray-900 mb-3 flex items-center gap-1">
-              お問い合わせ
-              <span>›</span>
-            </p>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1">暴力団等反社会的勢力排除宣言</Link></li>
-              <li><Link href="#" className="hover:text-red-600 flex items-center gap-1">プライバシーポリシー</Link></li>
-            </ul>
+          {/* お知らせ・お問い合わせ */}
+          <nav className="space-y-4">
+            <div>
+              <Link href="/news" className="font-bold text-gray-900 hover:text-red-600 transition-colors flex items-center gap-1">
+                お知らせ <span>›</span>
+              </Link>
+            </div>
+            <div>
+              <Link href="/contact" className="font-bold text-gray-900 hover:text-red-600 transition-colors flex items-center gap-1">
+                お問い合わせ <span>›</span>
+              </Link>
+            </div>
           </nav>
         </div>
 
-        <div className="py-6 border-t border-gray-400 text-center">
+        <div className="py-6 border-t border-gray-400 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Agent Grow Inspired Demo. All rights reserved.
+            &copy; {new Date().getFullYear()} 合同会社Anfra. All rights reserved.
           </p>
+          <Link href="/privacy" className="text-xs text-gray-400 hover:text-red-600 transition-colors">
+            プライバシーポリシー
+          </Link>
         </div>
       </Container>
     </footer>
