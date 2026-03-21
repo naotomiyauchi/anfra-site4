@@ -1,9 +1,7 @@
-"use client";
-
 import Section from "./Section";
 import Container from "./Container";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 
 const services = [
   {
@@ -32,7 +30,7 @@ const services = [
     id: "03",
     label: "オリジナルDXツール開発",
     description:
-      "既存ツールでは届かない“あと一歩”を埋める、現場業務にフィットした専用ツールを設計・開発します。",
+      "既存ツールでは届かない"あと一歩"を埋める、現場業務にフィットした専用ツールを設計・開発します。",
     points: [
       "業務要件から一緒にすり合わせ",
       "小さく作って育てるアジャイル開発",
@@ -45,13 +43,7 @@ export default function BusinessPageContent() {
   return (
     <Section id="business" className="py-20 lg:py-28 bg-white">
       <Container>
-        <motion.div
-          className="max-w-3xl mb-12 lg:mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <FadeIn className="max-w-3xl mb-12 lg:mb-16">
           <p className="text-sm font-medium text-red-600 mb-2">{`{事業内容}`}</p>
           <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 mb-3">
             Business
@@ -60,17 +52,15 @@ export default function BusinessPageContent() {
             Anfra は、組織が自走して変革し続けるための「人・業務・ツール」の 3 つの
             レイヤーから、DX 推進を支援しています。
           </p>
-        </motion.div>
+        </FadeIn>
 
         <div className="grid gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <motion.section
+            <FadeIn
               key={service.id}
+              as="section"
               className="rounded-2xl border border-slate-200 bg-slate-50/80 px-5 py-6 lg:px-7 lg:py-7"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
+              delay={index * 60}
             >
               <div className="flex items-start gap-4">
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-red-600 text-white text-sm font-semibold">
@@ -93,17 +83,11 @@ export default function BusinessPageContent() {
                   </ul>
                 </div>
               </div>
-            </motion.section>
+            </FadeIn>
           ))}
         </div>
 
-        <motion.div
-          className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.2 }}
-        >
+        <FadeIn className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-6" delay={200}>
           <p className="text-xs lg:text-sm text-slate-600">
             「どれに当てはまるか分からない」という段階でも、お気軽にご相談ください。
           </p>
@@ -114,9 +98,8 @@ export default function BusinessPageContent() {
             お問い合わせへ
             <span aria-hidden>›</span>
           </Link>
-        </motion.div>
+        </FadeIn>
       </Container>
     </Section>
   );
 }
-

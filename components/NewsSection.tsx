@@ -1,9 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 
 const newsItems = [
   { date: "2026-01-01", category: "お知らせ", title: "顧問弁護士変更のお知らせ", featured: false },
@@ -32,63 +30,51 @@ export default function NewsSection() {
           }}
         />
         <Container className="relative z-10">
-        <motion.div
-          className="flex flex-col lg:flex-row gap-12 lg:gap-16"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="lg:w-48 flex-shrink-0">
-            <p className="text-gray-500 text-sm mb-2">【お知らせ】</p>
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
-              News
-            </h2>
-            <div className="mt-2 w-12 h-0.5 bg-red-600" />
-            <Link
-              href="#"
-              className="mt-6 inline-flex items-center gap-2 group"
-            >
-              <span className="text-sm font-semibold text-gray-700 group-hover:text-red-600 transition-colors">
-                お知らせ一覧へ
-              </span>
-              <span className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 transition-colors">
-                <span aria-hidden>›</span>
-              </span>
-            </Link>
-          </div>
-          <div className="flex-1 bg-white rounded-xl shadow-sm overflow-hidden">
-            <ul className="divide-y divide-gray-400">
-              {newsItems.map((item, i) => (
-                <motion.li
-                  key={`${item.date}-${item.title}`}
-                  initial={{ opacity: 0, x: -16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                >
-                  <Link
-                    href="#"
-                    className="group flex items-center gap-4 px-6 py-4 bg-white hover:bg-red-600 transition-colors"
-                  >
-                    <span className="text-sm flex-shrink-0 text-gray-500 group-hover:text-white/90">
-                      {item.date}
-                    </span>
-                    <span className="px-2.5 py-0.5 rounded text-xs font-semibold flex-shrink-0 bg-red-100 text-red-700 group-hover:bg-white/20 group-hover:text-white">
-                      {item.category}
-                    </span>
-                    <span className="flex-1 font-medium text-gray-900 group-hover:text-white">
-                      {item.title}
-                    </span>
-                    <span className="flex-shrink-0 text-gray-400 group-hover:text-white/80">
-                      ›
-                    </span>
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
+          <FadeIn className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            <div className="lg:w-48 flex-shrink-0">
+              <p className="text-gray-500 text-sm mb-2">【お知らせ】</p>
+              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                News
+              </h2>
+              <div className="mt-2 w-12 h-0.5 bg-red-600" />
+              <Link
+                href="#"
+                className="mt-6 inline-flex items-center gap-2 group"
+              >
+                <span className="text-sm font-semibold text-gray-700 group-hover:text-red-600 transition-colors">
+                  お知らせ一覧へ
+                </span>
+                <span className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 transition-colors">
+                  <span aria-hidden>›</span>
+                </span>
+              </Link>
+            </div>
+            <div className="flex-1 bg-white rounded-xl shadow-sm overflow-hidden">
+              <ul className="divide-y divide-gray-400">
+                {newsItems.map((item, i) => (
+                  <FadeIn key={`${item.date}-${item.title}`} as="li" direction="left" delay={i * 50}>
+                    <Link
+                      href="#"
+                      className="group flex items-center gap-4 px-6 py-4 bg-white hover:bg-red-600 transition-colors"
+                    >
+                      <span className="text-sm flex-shrink-0 text-gray-500 group-hover:text-white/90">
+                        {item.date}
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded text-xs font-semibold flex-shrink-0 bg-red-100 text-red-700 group-hover:bg-white/20 group-hover:text-white">
+                        {item.category}
+                      </span>
+                      <span className="flex-1 font-medium text-gray-900 group-hover:text-white">
+                        {item.title}
+                      </span>
+                      <span className="flex-shrink-0 text-gray-400 group-hover:text-white/80">
+                        ›
+                      </span>
+                    </Link>
+                  </FadeIn>
+                ))}
+              </ul>
+            </div>
+          </FadeIn>
         </Container>
       </div>
     </Section>

@@ -1,8 +1,6 @@
-"use client";
-
 import Section from "./Section";
 import Container from "./Container";
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 
 const companyInfo = [
   { label: "会社名", value: "株式会社 Corporate" },
@@ -15,27 +13,15 @@ export default function CompanySection() {
   return (
     <Section id="company" className="py-24 lg:py-40 bg-white">
       <Container>
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <FadeIn className="text-center mb-16">
           <p className="text-indigo-600 font-semibold text-sm uppercase tracking-wider mb-4">
             Company
           </p>
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900">
             会社情報
           </h2>
-        </motion.div>
-        <motion.div
-          className="max-w-3xl mx-auto overflow-hidden rounded-2xl border border-gray-400 shadow-sm"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        </FadeIn>
+        <FadeIn className="max-w-3xl mx-auto overflow-hidden rounded-2xl border border-gray-400 shadow-sm">
           <table className="w-full">
             <tbody className="divide-y divide-gray-400">
               {companyInfo.map((row, i) => (
@@ -51,7 +37,7 @@ export default function CompanySection() {
               ))}
             </tbody>
           </table>
-        </motion.div>
+        </FadeIn>
       </Container>
     </Section>
   );

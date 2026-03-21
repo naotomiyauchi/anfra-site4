@@ -1,10 +1,8 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 
 const businessItems = [
   {
@@ -49,29 +47,18 @@ export default function BusinessSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           {/* 左：コンテンツ */}
           <div className="flex flex-col justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
+            <FadeIn>
               <p className="text-gray-400 text-sm mb-2">{`{サービス}`}</p>
               <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
                 Our
                 <br />
                 Service
               </h2>
-            </motion.div>
+            </FadeIn>
 
             <div className="mt-10 space-y-10">
               {businessItems.map((item, i) => (
-                <motion.div
-                  key={item.number}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
+                <FadeIn key={item.number} delay={i * 100}>
                   <span className="inline-block px-3 py-1 rounded-full bg-red-600 text-white text-sm font-semibold mb-3">
                     {item.number}
                   </span>
@@ -94,18 +81,15 @@ export default function BusinessSection() {
                     詳しく見る
                     <span aria-hidden>›</span>
                   </Link>
-                </motion.div>
+                </FadeIn>
               ))}
             </div>
           </div>
 
           {/* 右：画像 */}
-          <motion.div
+          <FadeIn
             className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[500px] rounded-lg overflow-hidden"
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            direction="right"
           >
             <Image
               src="/749DD9DD-387C-40B5-B7A1-6488B6F2CC31.JPG"
@@ -114,7 +98,7 @@ export default function BusinessSection() {
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-          </motion.div>
+          </FadeIn>
         </div>
       </Container>
     </Section>

@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 const heroImages = [
   "/01F931B4-BC67-42C1-9780-BCB55BCDA230.JPG",
@@ -16,42 +15,58 @@ const heroImages = [
 ];
 
 const INTERVAL_MS = 5000;
-const FADE_DURATION = 1.2;
+
+type SlotItem = { src: string; key: number; fading: boolean };
 
 export default function Hero() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [slots, setSlots] = useState<SlotItem[]>([
+    { src: heroImages[0], key: 0, fading: false },
+  ]);
+  const indexRef = useRef(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+      indexRef.current = (indexRef.current + 1) % heroImages.length;
+      const nextSrc = heroImages[indexRef.current];
+      const nextKey = indexRef.current;
+
+      setSlots((prev) => [
+        ...prev.map((s) => ({ ...s, fading: true })),
+        { src: nextSrc, key: nextKey, fading: false },
+      ]);
+
+      setTimeout(() => {
+        setSlots([{ src: nextSrc, key: nextKey, fading: false }]);
+      }, 1300);
     }, INTERVAL_MS);
+
     return () => clearInterval(timer);
   }, []);
+
+  const currentIndex = indexRef.current;
 
   return (
     <section
       id="top"
       className="relative min-h-screen flex items-end lg:items-center pt-20 lg:pt-0 overflow-hidden bg-gray-100"
     >
-      {/* メイン画像：ふわっと切り替え */}
+      {/* 画像：現在の1〜2枚のみDOMに存在 */}
       <div className="absolute inset-0">
-        {heroImages.map((src, i) => (
-          <motion.div
-            key={src}
-            className="absolute inset-0"
-            initial={false}
-            animate={{ opacity: i === currentIndex ? 1 : 0 }}
-            transition={{ duration: FADE_DURATION, ease: "easeInOut" }}
+        {slots.map(({ src, key, fading }) => (
+          <div
+            key={key}
+            className={`absolute inset-0 ${fading ? "" : "hero-image-enter"}`}
+            style={fading ? { opacity: 0, transition: "opacity 1.2s ease-in-out" } : undefined}
           >
             <Image
               src={src}
               alt="効率化じゃない。変革だ。"
               fill
               className="object-cover object-center"
-              priority={i === 0}
+              priority={key === 0}
               sizes="100vw"
             />
-          </motion.div>
+          </div>
         ))}
         {/* 左下を中心に広がる白いモヤ */}
         <div
@@ -62,14 +77,9 @@ export default function Hero() {
         />
       </div>
 
-      {/* 左下に配置：見出し（やや右上寄りに微調整） */}
+      {/* 左下に配置：見出し */}
       <div className="absolute bottom-0 left-0 right-0 z-10 px-10 pb-20 lg:pl-20 lg:pr-20 lg:pb-16">
-        <motion.div
-          className="max-w-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
+        <div className="max-w-2xl hero-heading-enter">
           <h1 className="text-8xl font-bold leading-tight tracking-tight drop-shadow-sm">
             <span className="text-gray-700 text-[0.85em]">効率化じゃない。</span>
             <br />
@@ -87,8 +97,7 @@ export default function Hero() {
               />
             ))}
           </div>
-
-        </motion.div>
+        </div>
       </div>
     </section>
   );

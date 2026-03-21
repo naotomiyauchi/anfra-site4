@@ -1,20 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import Section from "./Section";
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 
 export default function DownloadContactSection() {
   return (
     <Section id="download-contact" className="py-0">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* 左：白 - 資料ダウンロード */}
-        <motion.div
+        <FadeIn
           className="flex flex-col justify-center px-8 py-16 lg:py-24 lg:px-16 bg-white"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          direction="left"
         >
           <p className="text-gray-500 text-sm mb-2">〈資料ダウンロード〉</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-gray-900">
@@ -28,15 +23,12 @@ export default function DownloadContactSection() {
             資料ダウンロード
             <span aria-hidden>›</span>
           </Link>
-        </motion.div>
+        </FadeIn>
 
-        {/* 右：赤 - お問い合わせ（/contact への導線） */}
-        <motion.div
+        {/* 右：赤 - お問い合わせ */}
+        <FadeIn
           className="flex flex-col justify-center px-8 py-16 lg:py-24 lg:px-16 bg-red-600"
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          direction="right"
         >
           <p className="text-white/80 text-sm mb-2">〈お問い合わせ〉</p>
           <h2 className="text-2xl lg:text-3xl font-bold text-white">
@@ -50,7 +42,7 @@ export default function DownloadContactSection() {
             お問い合わせする
             <span aria-hidden>›</span>
           </Link>
-        </motion.div>
+        </FadeIn>
       </div>
     </Section>
   );

@@ -1,21 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 
 export default function CTASection() {
   return (
     <Section id="contact" className="py-24 lg:py-40 bg-indigo-600">
       <Container>
-        <motion.div
-          className="text-center max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <FadeIn className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl lg:text-5xl font-bold text-white leading-tight">
             お気軽にご相談ください
           </h2>
@@ -29,7 +21,7 @@ export default function CTASection() {
           >
             お問い合わせ
           </Link>
-        </motion.div>
+        </FadeIn>
       </Container>
     </Section>
   );

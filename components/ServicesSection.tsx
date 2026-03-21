@@ -1,9 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import Section from "./Section";
 import Container from "./Container";
-import { motion } from "framer-motion";
+import FadeIn from "./FadeIn";
 
 const services = [
   {
@@ -35,43 +33,21 @@ const services = [
   },
 ];
 
-const itemVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.5 },
-  }),
-};
-
 export default function ServicesSection() {
   return (
     <Section id="services" className="py-24 lg:py-40 bg-white">
       <Container>
-        <motion.div
-          className="mb-16 lg:mb-20"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <FadeIn className="mb-16 lg:mb-20">
           <p className="text-red-600 font-semibold text-sm uppercase tracking-wider mb-2">
             Our Service
           </p>
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-900">
             サービス
           </h2>
-        </motion.div>
+        </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {services.map((service, i) => (
-            <motion.div
-              key={service.number}
-              custom={i}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, margin: "-80px" }}
-              variants={itemVariants}
-            >
+            <FadeIn key={service.number} delay={i * 150}>
               <div className="h-full bg-white rounded-2xl border border-gray-200 p-8 lg:p-10 flex flex-col shadow-sm hover:shadow-md transition-shadow">
                 <span className="inline-block px-3 py-1 rounded-full bg-red-600 text-white text-sm font-bold mb-6 w-fit">
                   {service.number}
@@ -96,7 +72,7 @@ export default function ServicesSection() {
                   <span aria-hidden>›</span>
                 </Link>
               </div>
-            </motion.div>
+            </FadeIn>
           ))}
         </div>
       </Container>
